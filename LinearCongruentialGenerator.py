@@ -1,3 +1,5 @@
+from datetime import datetime
+
 class LinearCongruentialGenerator:
     def __init__(self, seed, multiplier, increment, modulo):
         self.seed = seed
@@ -26,6 +28,18 @@ class LinearCongruentialGenerator:
     def showGraph(self):
         json = {}
 
+        v = "Numeros Gerados"
+        v += "\n"
+        v += str(self.numeros)
+        v += "\n"
+        v += "-"*50
+        v += "\n"
+        v += "Numero - Vezes gerado"
+        v += "\n"
+
+        filename = str(datetime.now().replace(microsecond=0).isoformat()).replace(':', '-')
+        f = open("./files/" + filename, "w")
+
         self.numeros.sort()
 
         for it in self.numeros:
@@ -34,9 +48,11 @@ class LinearCongruentialGenerator:
                 continue
             json[it] += 1
 
-        print("Numero - Vezes gerado")
         for key in range(0, self.modulo):
             value = 0
             if key in json:
                 value = json[key]
-            print(f"{key: >{6}}" + ' - ' + str(value))
+            v += f"{key: >{6}}" + ' - ' + str(value)
+            v += "\n"
+        f.write(v)
+        print(v)
