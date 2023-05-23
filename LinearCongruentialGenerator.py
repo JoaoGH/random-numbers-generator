@@ -25,7 +25,7 @@ class LinearCongruentialGenerator:
 
         return numbers
 
-    def showGraph(self):
+    def doGraph(self):
         json = {}
 
         v = "Numeros Gerados"
