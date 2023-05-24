@@ -38,7 +38,7 @@ class LinearCongruentialGenerator:
         v += "\n"
 
         filename = str(datetime.now().replace(microsecond=0).isoformat()).replace(':', '-')
-        f = open("./files/" + "lcg_" + filename, "w")
+        f = open("./files/lcg_" + filename, "w")
 
         self.numeros.sort()
 
