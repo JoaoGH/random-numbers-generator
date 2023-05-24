@@ -7,23 +7,31 @@ class LinearCongruentialGenerator:
         self.increment = increment
         self.modulo = modulo
         self.numbers = []
+        self.last = None
 
     def generate(self, total):
         numeros = []
-        current = self.seed
-        numeros.append(current)
+        self.last = self.seed
+        numeros.append(self.last)
 
         for i in range(1, total):
-            current = (self.multiplier * current + self.increment) % self.modulo
+            self.last = self.gen()
 
-            if current < 0:
-                current *= -1
+            if self.last < 0:
+                self.last *= -1
 
-            numeros.append(current)
+            numeros.append(self.last)
 
         self.numbers = numeros
 
         return numeros
+
+    def gen(self):
+        self.last = (self.multiplier * (self.last if True else 0) + self.increment) % self.modulo
+        return self.last
+
+    def next(self):
+        return self.gen()
 
     def doGraph(self):
         json = {}
