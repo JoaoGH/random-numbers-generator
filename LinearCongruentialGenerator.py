@@ -37,8 +37,8 @@ class LinearCongruentialGenerator:
         v += "Numero - Vezes gerado"
         v += "\n"
 
-        filename = str(datetime.now().replace(microsecond=0).isoformat()).replace(':', '-')
-        f = open("./files/lcg_" + filename, "w")
+        filename = "./files/lcg_" + str(datetime.now().replace(microsecond=0).isoformat()).replace(':', '-')
+        f = open(filename, "w")
 
         self.numeros.sort()
 
@@ -55,4 +55,4 @@ class LinearCongruentialGenerator:
             v += f"{key: >{6}}" + ' - ' + str(value)
             v += "\n"
         f.write(v)
-        print(v)
+        print("Cheque o arquivo " + filename + " para verificar os numeros gerados.\n")
