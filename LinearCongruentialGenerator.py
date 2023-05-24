@@ -6,12 +6,12 @@ class LinearCongruentialGenerator:
         self.multiplier = multiplier
         self.increment = increment
         self.modulo = modulo
-        self.numeros = []
+        self.numbers = []
 
     def generate(self, total):
-        numbers = []
+        numeros = []
         current = self.seed
-        numbers.append(current)
+        numeros.append(current)
 
         for i in range(1, total):
             current = (self.multiplier * current + self.increment) % self.modulo
@@ -19,18 +19,18 @@ class LinearCongruentialGenerator:
             if current < 0:
                 current *= -1
 
-            numbers.append(current)
+            numeros.append(current)
 
-        self.numeros = numbers
+        self.numbers = numeros
 
-        return numbers
+        return numeros
 
     def doGraph(self):
         json = {}
 
         v = "Numeros Gerados"
         v += "\n"
-        v += str(self.numeros)
+        v += str(self.numbers)
         v += "\n"
         v += "-"*50
         v += "\n"
@@ -40,9 +40,9 @@ class LinearCongruentialGenerator:
         filename = "./files/lcg_" + str(datetime.now().replace(microsecond=0).isoformat()).replace(':', '-')
         f = open(filename, "w")
 
-        self.numeros.sort()
+        self.numbers.sort()
 
-        for it in self.numeros:
+        for it in self.numbers:
             if it not in json:
                 json[it] = 1
                 continue
