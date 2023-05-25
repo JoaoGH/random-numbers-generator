@@ -27,7 +27,7 @@ class LinearCongruentialGenerator:
         return numeros
 
     def gen(self):
-        self.last = (self.multiplier * (self.last if True else 0) + self.increment) % self.modulo
+        self.last = (self.multiplier * (self.last if self.last is not None else 0) + self.increment) % self.modulo
         return self.last
 
     def next(self):
