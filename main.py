@@ -44,6 +44,35 @@ def addMoreEntropy():
     lcgv2_2.doGraph()
 
 
+def cwe338():
+    message = "Texto super secreto."
+    key = lcg.next()
+    ciphertext = encryptMessage(message, key)
+
+    for i in range(0, 100):
+        decrypt = decryptMessage(ciphertext, i)
+        if decrypt == message:
+            print("Texto decriptografado \"" + decrypt + "\" usando a chave " + str(i))
+            break
+
+
+def encryptMessage(message, key):
+    ciphertext = ""
+    for char in message:
+        encrypted_char = str((ord(char) + key) % 256)
+        ciphertext += encrypted_char + " "
+    return ciphertext.strip()
+
+
+def decryptMessage(ciphertext, key):
+    plaintext = ""
+    ciphertext = ciphertext.split()
+    for encrypted_char in ciphertext:
+        decrypted_char = chr((int(encrypted_char) - key) % 256)
+        plaintext += decrypted_char
+    return plaintext
+
+
 while True:
     menu = "---\n"
     menu += "1 - Gerar numeros\n"
@@ -63,3 +92,5 @@ while True:
         cwe331()
     elif opc == 3:
         addMoreEntropy()
+    elif opc == 4:
+        cwe338()
