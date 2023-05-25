@@ -1,11 +1,12 @@
 from datetime import datetime
 
-class LinearCongruentialGenerator:
+class LinearCongruentialGenerator_V2:
     def __init__(self, seed, multiplier, increment, modulo):
-        self.seed = seed
+        entropy = int(datetime.now().timestamp())
+        self.seed = seed + entropy
         self.multiplier = multiplier
         self.increment = increment
-        self.modulo = modulo
+        self.modulo = modulo + int(entropy/10000)
         self.numbers = []
         self.last = None
 
@@ -45,7 +46,7 @@ class LinearCongruentialGenerator:
         v += "Numero - Vezes gerado"
         v += "\n"
 
-        filename = "./files/lcg_" + str(datetime.now().replace(microsecond=0).isoformat()).replace(':', '-')
+        filename = "./files/lcg-v2_" + str(datetime.now().replace(microsecond=0).isoformat()).replace(':', '-')
         f = open(filename, "w")
 
         self.numbers.sort()
