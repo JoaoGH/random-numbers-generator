@@ -29,6 +29,7 @@ def cwe331():
     if x == lcg.next():
         print("Sessao sequestrada")
 
+
 def addMoreEntropy():
     lcgv2_1 = LinearCongruentialGenerator_V2(0, 40692, 127, 100)
     print("Gerando números aleatórios via Linear Congruential Generator V2")
@@ -48,6 +49,7 @@ while True:
     menu += "1 - Gerar numeros\n"
     menu += "2 - CWE 331 - Insufficient Entropy\n"
     menu += "3 - Adicionar mais entropia\n"
+    menu += "4 - CWE-338 - Use of Cryptographically Weak PRNG\n"
     menu += "0 - Para Sair\n"
     opc = int(input(menu))
 
