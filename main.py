@@ -17,7 +17,7 @@ def showNumbers():
     msm.doGraph()
 
 
-def cwe331():
+def cwe331(lcg):
     print("CWE-331 - Gerado um id de sessão.")
     while True:
         print(lcg.next())
@@ -43,6 +43,13 @@ def addMoreEntropy():
     lcgv2_2.generate(1000000)
     lcgv2_2.doGraph()
 
+
+def cwe334():
+    lcg = LinearCongruentialGenerator(0, 40692, 127, 1000)
+    print("Gerando números aleatórios via Linear Congruential Generator")
+    lcg.generate(1000000)
+    lcg.doGraph()
+    cwe331(lcg)
 
 def cwe338():
     message = "Texto super secreto."
@@ -78,7 +85,8 @@ while True:
     menu += "1 - Gerar numeros\n"
     menu += "2 - CWE 331 - Insufficient Entropy\n"
     menu += "3 - Adicionar mais entropia\n"
-    menu += "4 - CWE-338 - Use of Cryptographically Weak PRNG\n"
+    menu += "4 - CWE-334 - Small Space of Random Values\n"
+    menu += "5 - CWE-338 - Use of Cryptographically Weak PRNG\n"
     menu += "0 - Para Sair\n"
     opc = int(input(menu))
 
@@ -89,8 +97,10 @@ while True:
     if opc == 1:
         showNumbers()
     elif opc == 2:
-        cwe331()
+        cwe331(lcg)
     elif opc == 3:
         addMoreEntropy()
     elif opc == 4:
+        cwe334()
+    elif opc == 5:
         cwe338()
