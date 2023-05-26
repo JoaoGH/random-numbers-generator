@@ -1,4 +1,5 @@
 from datetime import datetime
+import os
 
 ## Classe que gera números aleatórios e salva eles em um arquivo.
 class MiddleSquareMethod:
@@ -41,7 +42,10 @@ class MiddleSquareMethod:
         v += "Numero - Vezes gerado"
         v += "\n"
 
-        filename = "./files/msm_" + str(datetime.now().replace(microsecond=0).isoformat()).replace(':', '-')
+        if not os.path.exists('./files'):
+            os.makedirs('./files')
+
+        filename = "./files/msm_" + str(datetime.now().replace(microsecond=0).isoformat()).replace(':', '-') + '.txt'
         f = open(filename, "w")
 
         self.numbers.sort()
