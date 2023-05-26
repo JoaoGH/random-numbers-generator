@@ -1,5 +1,6 @@
 from datetime import datetime
 
+## Classe que gera números aleatórios e salva eles em um arquivo.
 class LinearCongruentialGenerator:
     def __init__(self, seed, multiplier, increment, modulo):
         self.seed = seed
@@ -9,6 +10,7 @@ class LinearCongruentialGenerator:
         self.numbers = []
         self.last = None
 
+    ## Método responsável por gerar os números, a quantidade é igual ao valor do parametro total.
     def generate(self, total):
         numeros = []
         self.last = self.seed
@@ -26,13 +28,17 @@ class LinearCongruentialGenerator:
 
         return numeros
 
+    ## Método que gera o número e salva no atributo last.
     def gen(self):
         self.last = (self.multiplier * (self.last if self.last is not None else 0) + self.increment) % self.modulo
         return self.last
 
+    ## Método responsável por gerar somente um número.
     def next(self):
         return self.gen()
 
+    ## Método responsável por criar um arquivo contendo todos os números gerados e a quantidade total dos números gerados.
+    ## O arquivo é salvo em ./files com o nome "lcg_" concatenado com a data atual no formato ISO.
     def doGraph(self):
         json = {}
 
