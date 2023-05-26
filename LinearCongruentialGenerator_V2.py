@@ -1,4 +1,5 @@
 from datetime import datetime
+import os
 
 ## Classe que gera números aleatórios e salva eles em um arquivo.
 ## Essa classe contém entropia, que é usando os segundos da data atual.
@@ -53,7 +54,10 @@ class LinearCongruentialGenerator_V2:
         v += "Numero - Vezes gerado"
         v += "\n"
 
-        filename = "./files/lcg-v2_" + str(datetime.now().replace(microsecond=0).isoformat()).replace(':', '-')
+        if not os.path.exists('./files'):
+            os.makedirs('./files')
+
+        filename = "./files/lcg-v2_" + str(datetime.now().replace(microsecond=0).isoformat()).replace(':', '-') + '.txt'
         f = open(filename, "w")
 
         self.numbers.sort()
