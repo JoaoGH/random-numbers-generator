@@ -3,10 +3,13 @@ from LinearCongruentialGenerator_V2 import LinearCongruentialGenerator_V2
 from MiddleSquareMethod import MiddleSquareMethod
 import time
 
+## Criar instancia global da classe LinearCongruentialGenerator
 lcg = LinearCongruentialGenerator(0, 40692, 127, 100)
+## Criar instancia global da classe MiddleSquareMethod
 msm = MiddleSquareMethod(1234)
 
 
+## Método realiza a geração dos números, e salva em um arquivo de texto.
 def showNumbers():
     print("Gerando numeros aleatórios via Linear Congruential Generator")
     lcg.generate(1000000)
@@ -17,6 +20,9 @@ def showNumbers():
     msm.doGraph()
 
 
+## Método realiza a geração de um novo ID de sessão.
+## Quando informado um número verifica se é o último ID gerado,
+## para sequestrar a sessão
 def cwe331(lcg):
     print("CWE-331 - Gerado um id de sessão.")
     while True:
@@ -30,6 +36,9 @@ def cwe331(lcg):
         print("Sessao sequestrada")
 
 
+## Método cria uma instancia da versão 2 do gerador.
+## Essa segunda versão tem a adição de entropia, buscando evitar a repetição dos valores.
+## São gerados 2 vezes com os mesmo valores, mas os resultados são distintos.
 def addMoreEntropy():
     lcgv2_1 = LinearCongruentialGenerator_V2(0, 40692, 127, 100)
     print("Gerando números aleatórios via Linear Congruential Generator V2")
@@ -44,6 +53,10 @@ def addMoreEntropy():
     lcgv2_2.doGraph()
 
 
+## Método cria uma instancia de LinearCongruentialGenerator.
+## Essa instancia tem um módulo maior, possibilitando assim uma maior
+## variabilidade de números, com isso é chamado o método 331, para mostrar
+## que mesmo tendo uma boa amplitude, ainda sim é possivel sequestrar a sessão.
 def cwe334():
     lcg = LinearCongruentialGenerator(0, 40692, 127, 1000)
     print("Gerando números aleatórios via Linear Congruential Generator")
@@ -51,6 +64,10 @@ def cwe334():
     lcg.doGraph()
     cwe331(lcg)
 
+## Método criptografa um texto simples usando como chave o proximo
+## número do objeto lcg definido globalmente.
+## Como é usando um módulo de 100 é realizado um for para tentar
+## quebrar a senha.
 def cwe338():
     message = "Texto super secreto."
     key = lcg.next()
@@ -63,6 +80,10 @@ def cwe338():
             break
 
 
+## Método realiza a criptografia de um texto usando uma chave.
+## A criptografia usada consiste em saltar o número gerado
+## na tabela ASCII usando módulo de 256 para consistir em
+## valores da tabela ASCII.
 def encryptMessage(message, key):
     ciphertext = ""
     for char in message:
@@ -71,6 +92,7 @@ def encryptMessage(message, key):
     return ciphertext.strip()
 
 
+## Método realiza a descriptografia de um texto usando uma chave.
 def decryptMessage(ciphertext, key):
     plaintext = ""
     ciphertext = ciphertext.split()

@@ -1,10 +1,12 @@
 from datetime import datetime
 
+## Classe que gera números aleatórios e salva eles em um arquivo.
 class MiddleSquareMethod:
     def __init__(self, seed):
         self.seed = seed
         self.numbers = []
 
+    ## Método responsável por gerar os números, a quantidade é igual ao valor do parametro total.
     def generate(self, total):
         numeros = []
         current = self.seed
@@ -25,6 +27,8 @@ class MiddleSquareMethod:
         return numeros
 
 
+    ## Método responsável por criar um arquivo contendo todos os números gerados e a quantidade total dos números gerados.
+    ## O arquivo é salvo em ./files com o nome "msm_" concatenado com a data atual no formato ISO.
     def doGraph(self):
         json = {}
 
